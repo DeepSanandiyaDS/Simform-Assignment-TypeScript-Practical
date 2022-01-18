@@ -1,4 +1,3 @@
-var global = "";
 function clr() {
     var ClearResult = document.getElementById('result');
     ClearResult.value = "0";
@@ -9,8 +8,10 @@ function clr() {
 }
 function clr_MC() {
     var ResultData = document.getElementById('result');
+    var MemoryResultData = document.getElementById('memory');
     ResultData.value = "0";
-    global = "";
+    localStorage.clear();
+    MemoryResultData.innerHTML = "No Memory Storage";
     var ddlTrigonometry = document.getElementById('ddlTrigonometry');
     var ddlFunctions = document.getElementById('ddlFunctions');
     ddlTrigonometry.value = "Trigonometry";
@@ -112,21 +113,29 @@ function FE_To_DEG() {
 }
 function MS_Click() {
     var ResultData = document.getElementById('result');
-    global = ResultData.value;
+    var MemoryResultData = document.getElementById('memory');
+    localStorage.setItem("MS_Value", ResultData.value);
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0";
 }
 function MR_Click() {
     var ResultData = document.getElementById('result');
-    ResultData.value = global;
+    var MemoryResultData = document.getElementById('memory');
+    ResultData.value = localStorage.getItem("MS_Value");
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
 }
 function M_Plus() {
     var ResultData = document.getElementById('result');
-    global = (parseFloat(ResultData.value) + parseFloat(global)).toString();
+    var MemoryResultData = document.getElementById('memory');
+    localStorage.setItem("MS_Value", (parseFloat(ResultData.value) + parseFloat(localStorage.getItem("MS_Value"))).toString());
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0";
 }
 function M_Minus() {
     var ResultData = document.getElementById('result');
-    global = (parseFloat(ResultData.value) - parseFloat(global)).toString();
+    var MemoryResultData = document.getElementById('memory');
+    localStorage.setItem("MS_Value", (parseFloat(ResultData.value) - parseFloat(localStorage.getItem("MS_Value"))).toString());
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0";
 }
 function ddlTrigonometry_Change() {
