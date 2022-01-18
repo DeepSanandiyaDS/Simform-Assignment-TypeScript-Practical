@@ -1,4 +1,3 @@
-var global = ""
 function clr()
 {
     let ClearResult = document.getElementById('result') as HTMLInputElement;
@@ -11,8 +10,10 @@ function clr()
 function clr_MC()
 {
     let ResultData = document.getElementById('result') as HTMLInputElement;
+    let MemoryResultData = document.getElementById('memory') as HTMLInputElement;
     ResultData.value = "0"
-    global = ""
+    localStorage.clear();
+    MemoryResultData.innerHTML = "No Memory Storage";
     let ddlTrigonometry = document.getElementById('ddlTrigonometry') as HTMLInputElement;
     let ddlFunctions = document.getElementById('ddlFunctions') as HTMLInputElement;
     ddlTrigonometry.value = "Trigonometry";
@@ -133,24 +134,32 @@ function FE_To_DEG()
 function MS_Click()
 {
     let ResultData = document.getElementById('result') as HTMLInputElement;
-    global = ResultData.value;
+    let MemoryResultData = document.getElementById('memory') as HTMLInputElement;
+    localStorage.setItem("MS_Value",ResultData.value)
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0"
 }
 function MR_Click()
 {
     let ResultData = document.getElementById('result') as HTMLInputElement;
-    ResultData.value = global
+    let MemoryResultData = document.getElementById('memory') as HTMLInputElement;
+    ResultData.value = localStorage.getItem("MS_Value")
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
 }
 function M_Plus()
 {
     let ResultData = document.getElementById('result') as HTMLInputElement;
-    global =  (parseFloat(ResultData.value) +  parseFloat(global)).toString()
+    let MemoryResultData = document.getElementById('memory') as HTMLInputElement;
+    localStorage.setItem("MS_Value",(parseFloat(ResultData.value) +  parseFloat(localStorage.getItem("MS_Value"))).toString())  
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0" 
 }
 function M_Minus()
 {
     let ResultData = document.getElementById('result') as HTMLInputElement;
-    global =  (parseFloat(ResultData.value) -  parseFloat(global)).toString()
+    let MemoryResultData = document.getElementById('memory') as HTMLInputElement;
+    localStorage.setItem("MS_Value",(parseFloat(ResultData.value) -  parseFloat(localStorage.getItem("MS_Value"))).toString())  
+    MemoryResultData.innerHTML = "Memory = " + localStorage.getItem("MS_Value");
     ResultData.value = "0" 
 }
 function ddlTrigonometry_Change()
